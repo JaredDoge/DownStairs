@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float jumpForce = 5;
     [SerializeField] int Hp;
     [SerializeField] GameObject HpBar;
     [SerializeField] Text scoreText;
@@ -83,6 +84,19 @@ public class Player : MonoBehaviour
                 }
 
                 break;
+
+            case "Trampoline":
+
+                if(IsFloorTop(other))
+                {
+                    
+                   currentFloor = other.gameObject;                  
+                   ModifyHp(1);
+                   other.gameObject.GetComponent<Animator>().SetTrigger("jump");
+                   GetComponent<Rigidbody2D>().AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+                } 
+
+                break;   
 
             //上方尖刺
             case "Ceilling":
