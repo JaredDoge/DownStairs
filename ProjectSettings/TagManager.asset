@@ -9,6 +9,9 @@ TagManager:
   - Nails
   - Ceilling
   - Trampoline
+  - ConveyorRight
+  - ConveyorLeft
+  - Fake
   layers:
   - Default
   - TransparentFX

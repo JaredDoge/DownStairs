@@ -22,9 +22,9 @@ public class FloorManager : MonoBehaviour
     public void CreateFloor()
     {
 
-        int random = Random.Range(0, floorPrefabs.Length);
+        int random =Random.Range(0, floorPrefabs.Length);
         GameObject obj = Instantiate(floorPrefabs[random], transform);
-        obj.transform.position = new Vector3(Random.Range(-3.8f, 3.9f), -5.3f, 0f);
+        obj.transform.position = new Vector3(Random.Range(-3.6f, 3.6f), -4.3f, 0f);
 
     }
 }

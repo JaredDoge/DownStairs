@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float jumpForce = 5;
+    [SerializeField] float moveSpeed;
+    [SerializeField] float jumpForce;
     [SerializeField] int Hp;
     [SerializeField] GameObject HpBar;
     [SerializeField] Text scoreText;
@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(isStop) return;
 
         if (Input.GetKey(KeyCode.RightArrow))
@@ -58,6 +59,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+
 
         switch (other.gameObject.tag)
         {
@@ -89,14 +91,47 @@ public class Player : MonoBehaviour
 
                 if(IsFloorTop(other))
                 {
-                    
                    currentFloor = other.gameObject;                  
-                   ModifyHp(1);
-                   other.gameObject.GetComponent<Animator>().SetTrigger("jump");
-                   GetComponent<Rigidbody2D>().AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+                   ModifyHp(1);        
+                   other.gameObject.GetComponent<Animator>().SetTrigger("jump");     
+                   GetComponent<Rigidbody2D>().AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);      
                 } 
 
-                break;   
+                break;  
+
+            case "ConveyorRight":
+                if(IsFloorTop(other))
+                {
+                
+                   currentFloor = other.gameObject;                  
+                   ModifyHp(1);
+
+                }
+
+                break;
+
+            case "ConveyorLeft":
+                if(IsFloorTop(other))
+                {
+                
+                   currentFloor = other.gameObject;                  
+                   ModifyHp(1);
+
+                }
+
+                break;
+
+
+            case "Fake":
+                if(IsFloorTop(other)){   
+                   Debug.Log(" Fake") ;
+                   currentFloor = other.gameObject;                   
+                   ModifyHp(1);        
+                   other.gameObject.GetComponent<Animator>().SetTrigger("flip");
+                   currentFloor.GetComponent<BoxCollider2D>().enabled = false;
+                }
+
+                break;
 
             //上方尖刺
             case "Ceilling":
@@ -112,11 +147,14 @@ public class Player : MonoBehaviour
 
                 break;
 
+                  
+
+
+
         }
 
-
-
     }
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -165,8 +203,8 @@ public class Player : MonoBehaviour
             score++;
             scoreTime = 0f;
             scoreText.text = "地下" + score + "層";
+            Floor.moveSpeed=(float)(score*0.05)+1;
         }
-
     }
 
     private void init()
@@ -180,10 +218,10 @@ public class Player : MonoBehaviour
 
     private void Death()
     {
-        isStop=true;
-        deathSound.Play();
-        Time.timeScale=0;
-        replayButton.SetActive(true);
+       isStop=true;
+       deathSound.Play();
+       Time.timeScale=0;
+       replayButton.SetActive(true);
     }
 
     public void Replay()
