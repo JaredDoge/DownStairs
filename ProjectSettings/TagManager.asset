@@ -12,6 +12,8 @@ TagManager:
   - ConveyorRight
   - ConveyorLeft
   - Fake
+  - ItemStart
+  - ItemExit
   layers:
   - Default
   - TransparentFX

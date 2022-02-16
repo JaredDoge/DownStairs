@@ -241,7 +241,7 @@ public class Player : MonoBehaviour
     {
 
         Time.timeScale = 1;
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
 
