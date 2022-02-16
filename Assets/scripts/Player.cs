@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpForce;
-    [SerializeField] int Hp;
+   
     [SerializeField] GameObject HpBar;
     [SerializeField] Text scoreText;
     int score;
@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject replayButton;
 
     bool isStop;
+    private int Hp;
 
     // Start is called before the first frame update
     void Start()
@@ -126,12 +127,10 @@ public class Player : MonoBehaviour
             case "Fake":
                 if (IsFloorTop(other))
                 {
-                    Debug.Log(" Fake");
+                    StartCoroutine(DelayToFake(other.gameObject));
                     currentFloor = other.gameObject;
                     ModifyHp(1);
-                    other.gameObject.GetComponent<Animator>().SetTrigger("flip");
-                    currentFloor.GetComponent<BoxCollider2D>().enabled = false;
-                    other.gameObject.GetComponent<AudioSource>().Play();
+                   
                 }
 
                 break;
@@ -157,6 +156,16 @@ public class Player : MonoBehaviour
         }
 
     }
+
+    private IEnumerator DelayToFake(GameObject obj)
+   {
+
+      yield return new WaitForSeconds(0.5f);
+      obj.GetComponent<Animator>().SetTrigger("flip");
+      currentFloor.GetComponent<BoxCollider2D>().enabled = false;
+      obj.gameObject.GetComponent<AudioSource>().Play();
+
+   }
 
 
     private void OnTriggerEnter2D(Collider2D other)
