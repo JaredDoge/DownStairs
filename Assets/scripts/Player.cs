@@ -25,35 +25,35 @@ public class Player : MonoBehaviour
     void Start()
     {
         init();
-        sr=GetComponent<SpriteRenderer>();
-        anim=GetComponent<Animator>();
-        deathSound=GetComponent<AudioSource>();
+        sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+        deathSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if(isStop) return;
+
+        if (isStop) return;
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            sr.flipX=false;
+            sr.flipX = false;
             transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
-            anim.SetBool("run",true);
+            anim.SetBool("run", true);
 
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            sr.flipX=true;
+            sr.flipX = true;
             transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
-            anim.SetBool("run",true);
+            anim.SetBool("run", true);
         }
         else
         {
-            anim.SetBool("run",false);
+            anim.SetBool("run", false);
         }
-    
+
         UpdateScore();
     }
 
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
 
                 if (IsFloorTop(other))
                 {
-                    currentFloor = other.gameObject; 
+                    currentFloor = other.gameObject;
                     ModifyHp(1);
                     other.gameObject.GetComponent<AudioSource>().Play();
                 }
@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
                 break;
 
             case "Nails":
-           
+
                 if (IsFloorTop(other))
                 {
                     currentFloor = other.gameObject;
@@ -89,46 +89,49 @@ public class Player : MonoBehaviour
 
             case "Trampoline":
 
-                if(IsFloorTop(other))
+                if (IsFloorTop(other))
                 {
-                   currentFloor = other.gameObject;                  
-                   ModifyHp(1);        
-                   other.gameObject.GetComponent<Animator>().SetTrigger("jump");     
-                   GetComponent<Rigidbody2D>().AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);      
-                } 
+                    currentFloor = other.gameObject;
+                    ModifyHp(1);
+                    other.gameObject.GetComponent<Animator>().SetTrigger("jump");
+                    GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                    other.gameObject.GetComponent<AudioSource>().Play();
+                }
 
-                break;  
+                break;
 
             case "ConveyorRight":
-                if(IsFloorTop(other))
+                if (IsFloorTop(other))
                 {
-                
-                   currentFloor = other.gameObject;                  
-                   ModifyHp(1);
 
+                    currentFloor = other.gameObject;
+                    ModifyHp(1);
+                    other.gameObject.GetComponent<AudioSource>().Play();
                 }
 
                 break;
 
             case "ConveyorLeft":
-                if(IsFloorTop(other))
+                if (IsFloorTop(other))
                 {
-                
-                   currentFloor = other.gameObject;                  
-                   ModifyHp(1);
 
+                    currentFloor = other.gameObject;
+                    ModifyHp(1);
+                    other.gameObject.GetComponent<AudioSource>().Play();
                 }
 
                 break;
 
 
             case "Fake":
-                if(IsFloorTop(other)){   
-                   Debug.Log(" Fake") ;
-                   currentFloor = other.gameObject;                   
-                   ModifyHp(1);        
-                   other.gameObject.GetComponent<Animator>().SetTrigger("flip");
-                   currentFloor.GetComponent<BoxCollider2D>().enabled = false;
+                if (IsFloorTop(other))
+                {
+                    Debug.Log(" Fake");
+                    currentFloor = other.gameObject;
+                    ModifyHp(1);
+                    other.gameObject.GetComponent<Animator>().SetTrigger("flip");
+                    currentFloor.GetComponent<BoxCollider2D>().enabled = false;
+                    other.gameObject.GetComponent<AudioSource>().Play();
                 }
 
                 break;
@@ -142,24 +145,25 @@ public class Player : MonoBehaviour
                 }
 
                 ModifyHp(-3);
-                anim.SetTrigger("hurt");                
+                anim.SetTrigger("hurt");
                 other.gameObject.GetComponent<AudioSource>().Play();
 
                 break;
 
-                  
+
 
 
 
         }
 
     }
-    
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag=="DeathLine"){
-             Death();
+        if (other.gameObject.tag == "DeathLine")
+        {
+            Death();
         }
     }
 
@@ -180,7 +184,7 @@ public class Player : MonoBehaviour
         }
         else if (Hp < 0)
         {
-            Hp = 0;   
+            Hp = 0;
             Death();
         }
         UpdateHpBar();
@@ -203,13 +207,13 @@ public class Player : MonoBehaviour
             score++;
             scoreTime = 0f;
             scoreText.text = "地下" + score + "層";
-            Floor.moveSpeed=(float)(score*0.05)+1;
+            Floor.moveSpeed = (float)(score * 0.05) + 1;
         }
     }
 
     private void init()
     {
-        isStop=false;
+        isStop = false;
         Hp = 10;
         score = 0;
         scoreTime = 0f;
@@ -218,17 +222,17 @@ public class Player : MonoBehaviour
 
     private void Death()
     {
-       isStop=true;
-       deathSound.Play();
-       Time.timeScale=0;
-       replayButton.SetActive(true);
+        isStop = true;
+        deathSound.Play();
+        Time.timeScale = 0;
+        replayButton.SetActive(true);
     }
 
     public void Replay()
     {
-       
-        Time.timeScale=1;
-        SceneManager.LoadScene("SampleScene"); 
+
+        Time.timeScale = 1;
+        SceneManager.LoadScene("SampleScene");
 
     }
 

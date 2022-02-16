@@ -1,46 +1,19 @@
 fileFormatVersion: 2
-guid: 4a4735820070a7a46a7b2e958baf9c55
+guid: 1c7e1a93cbc3d504387f6498a5cdb04d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 217133440306792705
-    second: fake 1_0
+      213: 502282454498985646
+    second: conveyor_left_0
   - first:
-      213: 659957233111919236
-    second: fake 1_1
+      213: 7239108485375627491
+    second: conveyor_left_1
   - first:
-      213: -575672534010088688
-    second: fake 1_2
+      213: -6186405254154651828
+    second: conveyor_left_2
   - first:
-      213: 6664020029900209424
-    second: fake 1_3
-  - first:
-      213: 6971898728023465714
-    second: fake 1_4
-  - first:
-      213: -1352595340901183967
-    second: fake 1_5
-  - first:
-      213: 7353695364305574741
-    second: fake 1_6
-  - first:
-      213: -117601332951816804
-    second: fake_0
-  - first:
-      213: 1828328187290471783
-    second: fake_1
-  - first:
-      213: 4398405257828422710
-    second: fake_2
-  - first:
-      213: -4383669154194716374
-    second: fake_3
-  - first:
-      213: 530211982548015773
-    second: fake_4
-  - first:
-      213: 1145262036763983924
-    second: fake_5
+      213: -3588322095614709738
+    second: conveyor_left_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -142,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fake_0
+      name: conveyor_left_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 190
-        width: 97
-        height: 19
+        y: 48
+        width: 96
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +129,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c956b44f5323e5ef0800000000000000
-      internalID: -117601332951816804
+      spriteID: ea6c25d2b3778f600800000000000000
+      internalID: 502282454498985646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fake_1
+      name: conveyor_left_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 147
-        width: 97
-        height: 32
+        y: 32
+        width: 96
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,41 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76d4848acc68f5910800000000000000
-      internalID: 1828328187290471783
+      spriteID: 3e0945120da767460800000000000000
+      internalID: 7239108485375627491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fake_2
+      name: conveyor_left_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 108
-        width: 97
-        height: 38
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 35, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 634d21b37464a0d30800000000000000
-      internalID: 4398405257828422710
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fake_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 36
-        width: 97
-        height: 37
+        y: 16
+        width: 96
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a29036341241a23c0800000000000000
-      internalID: -4383669154194716374
+      spriteID: c477085c239752aa0800000000000000
+      internalID: -6186405254154651828
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fake_4
+      name: conveyor_left_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 3
-        width: 97
-        height: 31
+        y: 0
+        width: 96
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,29 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9a1e6b2df0bb5700800000000000000
-      internalID: 530211982548015773
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fake_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 75
-        width: 97
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 430ce0c21c9c4ef00800000000000000
-      internalID: 1145262036763983924
+      spriteID: 6103337d018b33ec0800000000000000
+      internalID: -3588322095614709738
       vertices: []
       indices: 
       edges: []

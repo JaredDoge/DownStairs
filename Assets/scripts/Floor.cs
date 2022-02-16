@@ -24,12 +24,10 @@ public class Floor : MonoBehaviour
 
         transform.position+=new Vector3(0,moveSpeed * Time.deltaTime,0);
 
-        if (transform.position.y > 5.3f)
+        if (transform.position.y > 5.2f)
         {
-            
             Destroy(gameObject);
             transform.parent.GetComponent<FloorManager>().CreateFloor();
-
         }
     }
 

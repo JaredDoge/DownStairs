@@ -1,46 +1,25 @@
 fileFormatVersion: 2
-guid: 4a4735820070a7a46a7b2e958baf9c55
+guid: 2bd1a6375cbc6b84b857d86cbe2e8700
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 217133440306792705
-    second: fake 1_0
+      213: 979747076907484322
+    second: trampoline 1_0
   - first:
-      213: 659957233111919236
-    second: fake 1_1
+      213: 9103800213403607191
+    second: trampoline 1_1
   - first:
-      213: -575672534010088688
-    second: fake 1_2
+      213: 8555852856149851491
+    second: trampoline 1_2
   - first:
-      213: 6664020029900209424
-    second: fake 1_3
+      213: -372588796707987090
+    second: trampoline 1_3
   - first:
-      213: 6971898728023465714
-    second: fake 1_4
+      213: 3233985550558912648
+    second: trampoline 1_4
   - first:
-      213: -1352595340901183967
-    second: fake 1_5
-  - first:
-      213: 7353695364305574741
-    second: fake 1_6
-  - first:
-      213: -117601332951816804
-    second: fake_0
-  - first:
-      213: 1828328187290471783
-    second: fake_1
-  - first:
-      213: 4398405257828422710
-    second: fake_2
-  - first:
-      213: -4383669154194716374
-    second: fake_3
-  - first:
-      213: 530211982548015773
-    second: fake_4
-  - first:
-      213: 1145262036763983924
-    second: fake_5
+      213: 5667855615863601740
+    second: trampoline 1_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -86,7 +65,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 50
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 0, y: 109, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -142,76 +121,118 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fake_0
+      name: trampoline 1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 190
+        y: 109
+        width: 97
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a44cc886c2c89d00800000000000000
+      internalID: 979747076907484322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trampoline 1_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 66
         width: 97
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c956b44f5323e5ef0800000000000000
-      internalID: -117601332951816804
+      spriteID: 7902c026f02375e70800000000000000
+      internalID: 9103800213403607191
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fake_1
+      name: trampoline 1_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 147
+        y: 44
         width: 97
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 76d4848acc68f5910800000000000000
-      internalID: 1828328187290471783
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fake_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 108
-        width: 97
-        height: 38
+        height: 18
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 35, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 634d21b37464a0d30800000000000000
-      internalID: 4398405257828422710
+      spriteID: 36db25187de7cb670800000000000000
+      internalID: 8555852856149851491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fake_3
+      name: trampoline 1_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 36
+        y: 22
         width: 97
-        height: 37
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e612ee4a67c44daf0800000000000000
+      internalID: -372588796707987090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trampoline 1_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 97
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8806fcd49bc61ec20800000000000000
+      internalID: 3233985550558912648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trampoline 1_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 87
+        width: 97
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,50 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a29036341241a23c0800000000000000
-      internalID: -4383669154194716374
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fake_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 3
-        width: 97
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d9a1e6b2df0bb5700800000000000000
-      internalID: 530211982548015773
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fake_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 75
-        width: 97
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 430ce0c21c9c4ef00800000000000000
-      internalID: 1145262036763983924
+      spriteID: c4ab0cd27a448ae40800000000000000
+      internalID: 5667855615863601740
       vertices: []
       indices: 
       edges: []
