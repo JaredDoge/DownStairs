@@ -5,8 +5,8 @@ using UnityEngine;
 public class ScenceBuildIndex
 {
 
-    static int SCENCE_START=0;
-
-    static int SCENCE_MAIN=1;
+  public const int SCENCE_START=0;
+  public const int  SCENCE_MAIN=1;
+  public const int SCENCE_LOBBY=2;
    
 }

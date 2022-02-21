@@ -8,6 +8,7 @@ public class ItemManager : MonoBehaviour
     private int index = 0;
     // Start is called before the first frame update
     private int maxIndex;
+
     void Start()
     {
         maxIndex = transform.childCount - 1;
@@ -71,10 +72,21 @@ public class ItemManager : MonoBehaviour
         {
             //start
             case 0:
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(ScenceBuildIndex.SCENCE_MAIN);
             break;
 
             case 1:
+                SceneData.Set("state",PlayState.Create);
+                SceneManager.LoadScene(ScenceBuildIndex.SCENCE_LOBBY);
+            break;
+
+             case 2:
+                SceneData.Set("state",PlayState.Join);
+                SceneManager.LoadScene(ScenceBuildIndex.SCENCE_LOBBY);
+            break;
+
+
+            case 3:
                 Application.Quit();
             break;
 
