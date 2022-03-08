@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-namespace Jared
+namespace Game
 {
 
     public class Player : MonoBehaviour

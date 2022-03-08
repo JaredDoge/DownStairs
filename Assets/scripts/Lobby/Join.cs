@@ -17,6 +17,7 @@ public class Join : MonoBehaviourPunCallbacks
     public InputField roomIdInput;
 
 
+
     public void setState(PlayState state)
     {
          switch (state)
