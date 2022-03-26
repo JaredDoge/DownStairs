@@ -22,7 +22,7 @@ public class Floor : MonoBehaviour
         **/    
        // transform.Translate(0, moveSpeed * Time.deltaTime, 0,Space.World);
 
-        transform.position+=new Vector3(0,moveSpeed * Time.deltaTime,0);
+   //     transform.position+=new Vector3(0,moveSpeed * Time.deltaTime,0);
 
         if (transform.position.y > 5.2f)
         {

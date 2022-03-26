@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
-
+using Photon.Pun;
 public class RoomUI : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    class PlayerModel
+    public class PlayerModel
     {
         public string name;
         public int index;
@@ -30,6 +30,8 @@ public class RoomUI : MonoBehaviour
     private VerticalLayoutGroup vlg;
 
     private List<PlayerModel> players = new List<PlayerModel>();
+
+    public PlayerModel playerModel;
 
 
 
@@ -54,11 +56,19 @@ public class RoomUI : MonoBehaviour
         foreach (Player p in player)
         {
             playerIndex++;
-            players.Add(new PlayerModel
+            PlayerModel model=new PlayerModel
             {
                 name = p.NickName,
                 index = playerIndex
-            });
+            };
+            
+            //如果是本地player 則存起來
+            if(p.Equals(PhotonNetwork.LocalPlayer))
+            {
+                playerModel=model;
+            }
+            
+            players.Add(model);
         }
 
         for (int i = 0; i < playList.transform.childCount; i++)

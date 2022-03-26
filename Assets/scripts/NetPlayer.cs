@@ -1,22 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using UnityEngine.Events;
 
 namespace Game
 {
 
-    public class Player : MonoBehaviourPunCallbacks, IPunObservable
+
+    public class NetPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         [SerializeField] float moveSpeed;
         [SerializeField] float jumpForce;
 
-        [SerializeField] GameObject HpBar;
-        [SerializeField] Text scoreText;
-        int score;
-        float scoreTime;
+
         GameObject currentFloor;
         Animator anim;
         SpriteRenderer sr;
@@ -24,16 +24,29 @@ namespace Game
         [SerializeField] GameObject replayButton;
 
         bool isStop;
-        private int Hp;
+
+        public Action<int> PlayerHurt;
+
 
         // Start is called before the first frame update
         void Start()
         {
-            init();
+           // init();
             sr = GetComponent<SpriteRenderer>();
             anim = GetComponent<Animator>();
             deathSound = GetComponent<AudioSource>();
+
         }
+
+        private void init()
+        {
+           // isStop = false;
+          //  Hp = 10;
+          // score = 0;
+          //  scoreTime = 0f;
+          // scoreText.text = "地下" + score + "層";
+        }
+
 
         // Update is called once per frame
         void Update()
@@ -43,21 +56,20 @@ namespace Game
 
             if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
             {
-
-                Debug.Log("不是自己");
                 return;
             }
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                sr.flipX = false;
+                transform.localScale=new Vector3(1,0.6f,1);
                 transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
                 anim.SetBool("run", true);
 
             }
             else if (Input.GetKey(KeyCode.LeftArrow))
             {
-                sr.flipX = true;
+                
+                transform.localScale=new Vector3(-1,0.6f,1);
                 transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
                 anim.SetBool("run", true);
             }
@@ -65,13 +77,20 @@ namespace Game
             {
                 anim.SetBool("run", false);
             }
+        }
 
-            UpdateScore();
+        void UpdatePlayerHart(int hp)
+        {
+            PlayerHurt?.Invoke(hp);    
         }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
 
+             if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+            {
+                return;
+            }
 
             switch (other.gameObject.tag)
             {
@@ -81,7 +100,7 @@ namespace Game
                     if (IsFloorTop(other))
                     {
                         currentFloor = other.gameObject;
-                        ModifyHp(1);
+                        UpdatePlayerHart(1);
                         other.gameObject.GetComponent<AudioSource>().Play();
                     }
 
@@ -92,7 +111,7 @@ namespace Game
                     if (IsFloorTop(other))
                     {
                         currentFloor = other.gameObject;
-                        ModifyHp(-3);
+                        UpdatePlayerHart(1);
                         anim.SetTrigger("hurt");
                         other.gameObject.GetComponent<AudioSource>().Play();
                     }
@@ -104,7 +123,7 @@ namespace Game
                     if (IsFloorTop(other))
                     {
                         currentFloor = other.gameObject;
-                        ModifyHp(1);
+                        UpdatePlayerHart(1);
                         other.gameObject.GetComponent<Animator>().SetTrigger("jump");
                         GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
                         other.gameObject.GetComponent<AudioSource>().Play();
@@ -117,7 +136,7 @@ namespace Game
                     {
 
                         currentFloor = other.gameObject;
-                        ModifyHp(1);
+                        UpdatePlayerHart(1);
                         other.gameObject.GetComponent<AudioSource>().Play();
                     }
 
@@ -128,7 +147,7 @@ namespace Game
                     {
 
                         currentFloor = other.gameObject;
-                        ModifyHp(1);
+                        UpdatePlayerHart(1);
                         other.gameObject.GetComponent<AudioSource>().Play();
                     }
 
@@ -140,8 +159,9 @@ namespace Game
                     {
                         StartCoroutine(DelayToFake(other.gameObject));
                         currentFloor = other.gameObject;
-                        ModifyHp(1);
-
+                        UpdatePlayerHart(1);
+                        
+                         
                     }
 
                     break;
@@ -154,7 +174,7 @@ namespace Game
                         currentFloor.GetComponent<BoxCollider2D>().enabled = false;
                     }
 
-                    ModifyHp(-3);
+                    UpdatePlayerHart(-3);
                     anim.SetTrigger("hurt");
                     other.gameObject.GetComponent<AudioSource>().Play();
 
@@ -165,18 +185,20 @@ namespace Game
 
         }
 
-        public void OnPhotonSerializeView(PhotonStream stream,PhotonMessageInfo info)
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
-            // if (stream.IsWriting)
-            // {
-            //     // 為玩家本人的狀態, 將 IsFiring 的狀態更新給其他玩家
-            //     stream.SendNext(IsFiring);
-            // }
-            // else
-            // {
-            //     // 非為玩家本人的狀態, 單純接收更新的資料
-            //     this.IsFiring = (bool)stream.ReceiveNext();
-            // }
+            if (stream.IsWriting)
+            {
+                // 為玩家本人的狀態, 將 IsFiring 的狀態更新給其他玩家
+
+                //是否翻轉
+              //  stream.SendNext(sr.flipX);
+            }
+            else
+            {
+                // 非為玩家本人的狀態, 單純接收更新的資料
+               // this.IsFiring = (bool)stream.ReceiveNext();
+            }
         }
 
         private IEnumerator DelayToFake(GameObject obj)
@@ -205,66 +227,24 @@ namespace Game
             return other.contacts[0].normal == new Vector2(0f, 1f);
         }
 
-        private void ModifyHp(int num)
+       
+
+
+
+        // public void Replay()
+        // {
+
+        //     Time.timeScale = 1;
+        //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        // }
+
+        public void Death()
         {
-            Hp += num;
-
-            if (Hp > 10)
-            {
-                Hp = 10;
-            }
-            else if (Hp < 0)
-            {
-                Hp = 0;
-                Death();
-            }
-            UpdateHpBar();
-        }
-
-        private void UpdateHpBar()
-        {
-            for (int i = 0; i < HpBar.transform.childCount; i++)
-            {
-                HpBar.transform.GetChild(i).gameObject.SetActive(Hp > i);
-            }
-
-        }
-
-        private void UpdateScore()
-        {
-            scoreTime += Time.deltaTime;
-            if (scoreTime > 2f)
-            {
-                score++;
-                scoreTime = 0f;
-                scoreText.text = "地下" + score + "層";
-                Floor.moveSpeed = (float)(score * 0.05) + 1;
-            }
-        }
-
-        private void init()
-        {
-            isStop = false;
-            Hp = 10;
-            score = 0;
-            scoreTime = 0f;
-            scoreText.text = "地下" + score + "層";
-        }
-
-        private void Death()
-        {
-            isStop = true;
+            // isStop = true;
             deathSound.Play();
-            Time.timeScale = 0;
-            replayButton.SetActive(true);
-        }
-
-        public void Replay()
-        {
-
-            Time.timeScale = 1;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
+            //   Time.timeScale = 0;
+            //  replayButton.SetActive(true);
         }
 
 

@@ -67,45 +67,66 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         join.setState(state);
 
-        join.backButton.onClick.AddListener(delegate
-        {
-            if (PhotonNetwork.IsConnected)
-            {
-                PhotonNetwork.Disconnect();
-            }
-            SceneManager.LoadScene(ScenceBuildIndex.SCENCE_START);
+        join.backButton.onClick.AddListener(this.JoinBack);
 
-        });
+        join.roomButton.onClick.AddListener(this.JoinRoom);
 
-        join.roomButton.onClick.AddListener(delegate
-            {
-                connectRequest = true;
-                Connect();
-            }
-        );
+        roomUI.backBtn.onClick.AddListener(this.RoomBack);
 
-
-        roomUI.backBtn.onClick.AddListener(delegate
-            {
-                JoinUI();
-                PhotonNetwork.LeaveRoom();
-
-            }
-        );
-
-        roomUI.startBtn.onClick.AddListener(
-            delegate
-            {
-
-            }
-        );
+        roomUI.startBtn.onClick.AddListener(this.RoomStart);
 
         JoinUI();
 
+        ///test
+        JoinRoom();
+
+    }
+
+    void JoinBack()
+    {
+
+        if (PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.Disconnect();
+        }
+        SceneManager.LoadScene(ScenceBuildIndex.SCENCE_START);
+    }
+
+    void JoinRoom()
+    {
+        connectRequest = true;
+        Connect();
+
+    }
+
+    void RoomBack()
+    {
+        JoinUI();
+        PhotonNetwork.LeaveRoom();
+
+    }
+
+    void RoomStart()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            //Master Client 才載scene
+            PhotonNetwork.LoadLevel(ScenceBuildIndex.SCENCE_2_PLAYER);
+        }
+    }
 
 
 
+    private void OnDestroy()
+    {
 
+        join.backButton.onClick.RemoveListener(this.JoinBack);
+
+        join.roomButton.onClick.RemoveListener(this.JoinRoom);
+
+        roomUI.backBtn.onClick.RemoveListener(this.RoomBack);
+
+        roomUI.startBtn.onClick.RemoveListener(this.RoomStart);
     }
 
     void Update()
@@ -152,9 +173,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         {
             case PlayState.Create:
                 // 設定遊戲玩家的名稱
-                PhotonNetwork.NickName = join.nameInput.text;
+                PhotonNetwork.NickName = "房長";
+                
+                    //join.nameInput.text;
+
                 //創亂數room name
-                roomName = Random.Range(0, 100000).ToString().PadLeft(6, '0');
+
+                roomName = "77777";
+                
+                //Random.Range(0, 100000).ToString().PadLeft(6, '0');
 
 
                 Debug.Log("創立" + roomName + "遊戲室");
@@ -169,9 +196,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
             case PlayState.Join:
                 // 設定遊戲玩家的名稱
-                PhotonNetwork.NickName = join.nameInput.text;
+                PhotonNetwork.NickName = "加入的人";
+                
+                  //join.nameInput.text;
 
-                roomName = join.roomIdInput.text;
+                roomName ="77777";
+                
+                // join.roomIdInput.text;
 
                 Debug.Log("加入" + roomName + "遊戲室");
 
@@ -202,7 +233,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("PUN 呼叫 OnJoinedRoom(), 已成功進入遊戲室中.");
         roomUI.roomId.text = string.Format("RoomID : " + roomName);
-    
+
         RoomUI();
 
         ReloadPlayerList();
